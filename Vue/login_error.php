@@ -12,7 +12,7 @@ echo '
         <div class="card-content white-text">
           <p>Erreur : page Introuvable</p>
         </div>
-        <a class="waves-effect waves-light btn col s4 offset-s4" href="accueil.php">Retour à l\'Accueil</a>
+        <a class="waves-effect waves-light btn col s4 offset-s4" href="accueil.php"> Aller à la connexion</a>
       </div>
     </div>
   </div>

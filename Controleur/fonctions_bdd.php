@@ -1,6 +1,6 @@
 <?php
 
-function add_user_full($name,$lastname,$job,$mail,$password,$birthdate,$role){
+function add_full_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :mail, :password, :birthdate, :role)');
 	$req->execute(array(
@@ -13,6 +13,15 @@ function add_user_full($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	'birthdate' => $birthdate,
 	'role' => $role,
 	));
+}
+
+
+function get_bdd(){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$reponse = $bdd->query("SELECT * FROM school_list");
+	$donnees = $reponse->fetch();
+	$donnees = [$donnees[0],$donnees[1]];
+	return $donnees;
 }
 
 
@@ -30,9 +39,10 @@ function add_user($mail,$password){
 
 function check_user($mail,$password){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
-	$donnees = $bdd->query("SELECT password FROM users WHERE mail=".$mail."");
+	$donnees = $bdd->query('SELECT password FROM users WHERE mail="'.$mail.'"');
+	$response = $donnees->fetch();
 	//$donnees = $reponse->fetch();
-	if ($donnees == $password){
+	if ($response[0] == $password){
 		return true;
 	}
 	else{
