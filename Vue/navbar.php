@@ -10,7 +10,7 @@
       <a href="#" class="brand-logo" style="margin-left: 2%;">ARCHIBOOK</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="">Accueil</a></li>
-        <li><a href="">Mon Profil</a></li>
+        <li><a href="profile.php">Mon Profil</a></li>
         <li><a href="">Déconnexion</a></li>
       </ul>
     </div>

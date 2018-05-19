@@ -15,13 +15,27 @@ function add_full_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	));
 }
 
-
 function get_bdd(){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$reponse = $bdd->query("SELECT * FROM school_list");
 	$donnees = $reponse->fetch();
 	$donnees = [$donnees[0],$donnees[1]];
 	return $donnees;
+}
+
+function friends_request($id_user1, $id_user2){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$req = $bdd->prepare('INSERT INTO relations VALUES(:id_user1, :id_user2, :state)');
+	$req->execute(array(
+	'id_user1' => $id_user1;	
+	'id_user2' => $id_user2;
+	'state' => 'waiting';
+ 	));
+}
+
+function friend_confirmation($id_user1,$id_user2){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$req = $bdd->prepare('UPDATE relations SET state="confirmed" WHERE id_user1 ='.$id_user1.' OR id_user1 ='.$id_user2.' AND id_user2 ='.$id_user1.' OR id_user2 ='.$id_user2.' ');
 }
 
 
@@ -48,9 +62,6 @@ function check_user($mail,$password){
 	else{
 		return false;
 	}
-
-
-
 }
 
 //POUR L'INSTANT, CETTE FONCTION FAIT LA MEME CHOSE QUE LA PRECEDENTE

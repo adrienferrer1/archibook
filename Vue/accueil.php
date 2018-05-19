@@ -4,10 +4,8 @@ ini_set('display_errors', 1);
 include 'navbar.php';
 
 
-echo ("<h5>Bienvenue </h5>".$_SESSION['name']." !");
-
 ?>
-	<div class="container">
+	<div class="container col s12">
 		<h4>Liste de mes amis : </h4>	
 	      <table class="striped">
 	        <thead>
