@@ -1,37 +1,18 @@
 <?php
 
-ini_set('display_errors', 1);
 include 'navbar.php';
 
-
 ?>
-	<div class="container col s12">
-		<h4>Liste de mes amis : </h4>	
-	      <table class="striped">
-	        <thead>
-	          <tr>
-	              <th>Name</th>
-	              <th>Item Name</th>
-	              <th>Item Price</th>
-	          </tr>
-	        </thead>
-
-	        <tbody>
-	          <tr>
-	            <td>Alvin</td>
-	            <td>Eclair</td>
-	            <td>$0.87</td>
-	          </tr>
-	          <tr>
-	            <td>Alan</td>
-	            <td>Jellybean</td>
-	            <td>$3.76</td>
-	          </tr>
-	          <tr>
-	            <td>Jonathan</td>
-	            <td>Lollipop</td>
-	            <td>$7.00</td>
-	          </tr>
-	        </tbody>
-	      </table>
-	    </div>
+	<div class="row container">
+		<div class="container col xl4 l4 m6">
+			<?php include "../Modele/received_requests.php"; ?>		
+		</div>
+		<div class="container col xl8 l8 m6">
+			<?php include '../Modele/comment_form.php'; ?>
+		</div>
+	</div>
+	<div class="row container">
+		<div class="container col xl12 l12 m12">
+			<?php include "../Modele/comments.php"; ?>
+		</div>
+	</div>
