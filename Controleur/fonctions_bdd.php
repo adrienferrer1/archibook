@@ -1,6 +1,6 @@
 <?php
 
-function add_full_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
+function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :mail, :password, :birthdate, :role)');
 	$req->execute(array(
@@ -14,6 +14,16 @@ function add_full_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	'role' => $role,
 	));
 }
+
+function get_school_users($school){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$reponse = $bdd->query('SELECT name,lastname,birthdate FROM users WHERE school="'.$school.'"');
+	$donnees = $reponse->fetchall();
+	//$user = {$donnees[1],$donnees[2],$donnees[5]} 
+
+	return $donnees;
+}
+
 
 function get_bdd(){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');

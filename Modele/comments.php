@@ -1,9 +1,4 @@
 <?php
-
-
-//For each ... in ... echo 
-
-
 echo "
     <div class='card horizontal'>
       <div class='card-stacked'>

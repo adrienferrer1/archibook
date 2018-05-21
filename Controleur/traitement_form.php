@@ -12,11 +12,11 @@ $_SESSION['mail'] = $mail;
 ini_set('display_errors', 1);
 if (check_user($mail,$pw)==true){
 	$_SESSION['isLoggedIn'] = true;
-	header('Location: ../Vue/accueil.php');
+	header('Location: ./Vue/accueil.php');
 	exit;
 }
 else{
-	header('Location: ../test.php');
+	header('Location: ./test.php');
 	//header('Location : http://localhost/archibook1/Vue/login_error.php');
 	exit;
 } 
