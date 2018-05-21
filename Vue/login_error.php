@@ -10,9 +10,9 @@ echo '
     <div class="col s12 m6">
       <div class="card blue-grey darken-1 col-s4 offset-s4">
         <div class="card-content white-text">
-          <p>Erreur : page Introuvable</p>
+          <p>Echec de la connexion</p>
         </div>
-        <a class="waves-effect waves-light btn col s4 offset-s4" href="accueil.php"> Aller à la connexion</a>
+        <a class="waves-effect waves-light btn col s4 offset-s4" href="login_form.php"> Aller à la connexion</a>
       </div>
     </div>
   </div>

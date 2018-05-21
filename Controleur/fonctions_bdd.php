@@ -1,8 +1,8 @@
 <?php
 
-function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
+function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role,$school){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
-	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :mail, :password, :birthdate, :role)');
+	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :mail, :password, :birthdate, :role, :school)');
 	$req->execute(array(
 	'id' => null,	
 	'name' => $name,
@@ -12,8 +12,19 @@ function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role){
 	'password' => $password,
 	'birthdate' => $birthdate,
 	'role' => $role,
+	'school' => $school,
 	));
 }
+function get_user_data($mail){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$reponse = $bdd->query('SELECT name,lastname,job,mail,birthdate,role,school FROM users WHERE mail="'.$mail.'"');
+	$donnees = $reponse->fetch();
+	//$user = {$donnees[1],$donnees[2],$donnees[5]} 
+
+	return $donnees;
+}
+
+
 
 function get_school_users($school){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
@@ -24,32 +35,6 @@ function get_school_users($school){
 	return $donnees;
 }
 
-
-function get_bdd(){
-	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
-	$reponse = $bdd->query("SELECT * FROM school_list");
-	$donnees = $reponse->fetch();
-	$donnees = [$donnees[0],$donnees[1]];
-	return $donnees;
-}
-
-function friends_request($id_user1, $id_user2){
-	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
-	$req = $bdd->prepare('INSERT INTO friends_requests VALUES(:id_user1, :id_user2)');
-	$req->execute(array(
-	'id_user1' => $id_user1,	
-	'id_user2' => $id_user2,
- 	));
-}
-
-
-
-
-/*
-function friend_confirmation($id_user1,$id_user2){
-	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
-	$req = $bdd->prepare('UPDATE relations SET state="confirmed" WHERE id_user1 ='.$id_user1.' OR id_user1 ='.$id_user2.' AND id_user2 ='.$id_user1.' OR id_user2 ='.$id_user2.' ');
-}*/
 
 
 function add_user($mail,$password){
@@ -77,7 +62,6 @@ function check_user($mail,$password){
 	}
 }
 
-//POUR L'INSTANT, CETTE FONCTION FAIT LA MEME CHOSE QUE LA PRECEDENTE
 function update_profile($name,$lastname,$job,$birthdate,$role){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :birthdate, :role)');

@@ -1,7 +1,11 @@
 <?php
 include '../Controleur/fonctions_bdd.php';
+session_start();
 
-$users = get_school_users('isep');
+
+$users = get_school_users($_SESSION['school']);
+
+
 
 echo "
 	<h6>Liste des membres de mon école : </h6>

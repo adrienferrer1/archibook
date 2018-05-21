@@ -14,21 +14,6 @@ include 'navbar.php';
 			<?php include "../Modele/friends_requests_list.php"; ?>
 		</div>
 		<div class="col s12">
-			<h6>Modifier mes informations :</h6>
-			<form method="post" action="">
-				<input type="text" name="name" placeholder="Prénom">
-				<input type="text" name="name" placeholder="Nom">
-
-				
-
-
-
-			</form>
-		</div>
-
-
-
-		<div class="col s12">
 			<?php //include "../Modele/my_comments.php"; ?>
 		</div>
 	</div>
