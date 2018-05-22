@@ -23,9 +23,6 @@ function get_user_data($mail){
 
 	return $donnees;
 }
-
-
-
 function get_school_users($school){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$reponse = $bdd->query('SELECT name,lastname,birthdate FROM users WHERE school="'.$school.'"');
@@ -34,9 +31,6 @@ function get_school_users($school){
 
 	return $donnees;
 }
-
-
-
 function add_user($mail,$password){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('INSERT INTO users VALUES(:mail, :password)');
@@ -46,9 +40,6 @@ function add_user($mail,$password){
 	'password' => $password,
 	));
 }
-
-
-
 function check_user($mail,$password){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$donnees = $bdd->query('SELECT password FROM users WHERE mail="'.$mail.'"');
@@ -61,7 +52,6 @@ function check_user($mail,$password){
 		return false;
 	}
 }
-
 function update_profile($name,$lastname,$job,$birthdate,$role){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('INSERT INTO users VALUES(:id, :name, :lastname, :job, :birthdate, :role)');
