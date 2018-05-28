@@ -45,7 +45,7 @@ function check_user($mail,$password){
 	$donnees = $bdd->query('SELECT password FROM users WHERE mail="'.$mail.'"');
 	$response = $donnees->fetch();
 	//$donnees = $reponse->fetch();
-	if ($response[0] == $password){
+	if ($response[0] == $password && $password != ''){
 		return true;
 	}
 	else{

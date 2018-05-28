@@ -10,10 +10,10 @@ include 'Modele/login_check.php';
 //On inclut le logo du site et le menu
 
 if (isLoggedIn()==true) {
-	include 'Vue/accueil.php';
+	header('Location: Vue/accueil.php');
 }
 else{
-	include 'Vue/login_form.php';
+	header('Location: Vue/login_form.php');
 }
 
 
