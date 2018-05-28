@@ -15,8 +15,26 @@ function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role,$scho
 	'school' => $school,
 	));
 }
-function get_user_data($mail){
+
+function insert_password($mail,$password){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$req = $bdd->prepare('UPDATE `users` SET `password` = "'.$password.'" WHERE `mail` ="'.$mail.'" ');
+	$req->execute(array(
+	'password' => $password
+	));
+	echo "hello";
+}
+
+function get_user_data($mail){
+	try
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	}
+	catch (Exception $e)
+	{
+	    die('Erreur : ' . $e->getMessage());
+	}
+
 	$reponse = $bdd->query('SELECT name,lastname,job,mail,birthdate,role,school FROM users WHERE mail="'.$mail.'"');
 	$donnees = $reponse->fetch();
 	//$user = {$donnees[1],$donnees[2],$donnees[5]} 
@@ -51,6 +69,14 @@ function check_user($mail,$password){
 	else{
 		return false;
 	}
+}
+
+function is_subbed($mail){
+	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+	$donnees = $bdd->query('SELECT * FROM users WHERE mail="'.$mail.'"');
+	$response = $donnees->fetch();
+	//$donnees = $reponse->fetch();
+	return $response;
 }
 function update_profile($name,$lastname,$job,$birthdate,$role){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');

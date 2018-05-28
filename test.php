@@ -1,6 +1,10 @@
 <?php
 
+$_SESSION['mail']='abc@abc.com';
+$password = 'test';
 
-echo($_SERVER['PHP_SELF']);
+include 'Controleur/fonctions_bdd.php';
+
+insert_password($_SESSION['mail'],$password);
 
 ?>
