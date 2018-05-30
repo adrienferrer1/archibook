@@ -1,7 +1,8 @@
 <?php 
 
-include '../Modele/dependencies.php';
+session_start();
 
+include '../Modele/dependencies.php';
 	echo '
     </br>
     </br>
@@ -20,6 +21,7 @@ include '../Modele/dependencies.php';
 	    </div>
   	</div>
 	';
+
 ?>
 
 

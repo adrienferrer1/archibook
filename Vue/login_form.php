@@ -3,13 +3,11 @@
 include '../Modele/dependencies.php';
 
 	echo '
-
     </br>
     </br>
    	<div class="row">
 	    <div class="col s6 offset-s3">
 	      <div class="card blue-grey darken-1">
-
 	      	<form method="post" action="../Controleur/traitement_form.php">
 		        <div class="card-content white-text">
 			    	<div class="row">

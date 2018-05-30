@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+if ($_SESSION['isLoggedIn']==true) {
 
 
 echo '
@@ -17,7 +20,10 @@ echo '
     </div>
   </div>
 ';
-
+}
+else{
+	header('Location: Not_logged.php');
+}
 
 
 

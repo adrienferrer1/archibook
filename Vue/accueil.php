@@ -1,11 +1,22 @@
 <?php
+session_start();
 
-include 'navbar.php';
+if ($_SESSION['isLoggedIn']==true) {
+	include 'navbar.php';
 
-?>
+echo'
 	<div class="row container">
 		<div class="container col xl12 l12 m12">
-			<?php include "../Modele/school_members.php"; ?>	
+		';
+	include "../Modele/school_members.php";
+echo'	
 		</div>
-
 	</div>	
+';
+}
+else{
+	header('Location: Not_logged.php');
+}
+
+?>
+

@@ -1,15 +1,13 @@
 <?php
 
 //echo '<h4> Merci '.$_POST['login1'].' de vous être connecté';
-include 'fonctions_bdd.php';
-include 'fonctions_str_control.php';
+require 'fonctions_bdd.php';
+require 'fonctions_str_control.php';
 
 session_start();
 
 $mail = $_POST['mail'];
 $pw = $_POST['password'];
-
-print_r(get_user_data($mail));
 
 $user_data = get_user_data($mail);
 $_SESSION['name'] = $user_data[0];
@@ -20,12 +18,11 @@ $_SESSION['birthdate'] = $user_data[4];
 $_SESSION['role'] = $user_data[5];
 $_SESSION['school'] = $user_data[6];
 
-
-
-
 $_SESSION['mail'] = $mail;
 
 ini_set('display_errors', 1);
+
+
 if (check_user($mail,$pw)==true){
 	$_SESSION['isLoggedIn'] = true;
 	header('Location: ../Vue/accueil.php');
@@ -33,7 +30,6 @@ if (check_user($mail,$pw)==true){
 }
 else{
 	header('Location: ../Vue/login_error.php');
-	//header('Location : http://localhost/archibook1/Vue/login_error.php');
 	exit;
 } 
 
