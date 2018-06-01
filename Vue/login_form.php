@@ -1,7 +1,6 @@
 <?php 
 
 include '../Modele/dependencies.php';
-
 	echo '
     </br>
     </br>

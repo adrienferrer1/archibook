@@ -1,13 +1,14 @@
 <?php
+
+include 'fonctions_bdd.php';
 session_start();
 
 $mail = $_SESSION['mail'];
 $password = $_POST['password3'];
 
-//echo($mail);
-//echo($password);
+$password = secure_string($password);
 
-include 'fonctions_bdd.php';
+echo($mail);
 
 insert_password($mail,$password);
 

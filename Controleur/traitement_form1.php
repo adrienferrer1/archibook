@@ -4,10 +4,9 @@ session_start();
 
 require 'fonctions_bdd.php';
 
-$_SESSION['mail'] = $_POST['mail'];
+$_SESSION['mail'] = secure_string($_POST['mail']);
 
 $mail = $_SESSION['mail'];
-
 
 if (is_subbed($_SESSION['mail']) == '') {
 	header('Location: ../Vue/sub_error.php');

@@ -1,5 +1,23 @@
 <?php
-
+// FONCTION DE SECURISATION //
+	function secure_string($string){
+		$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
+		// On regarde si le type de string est un nombre entier (int)
+		if(ctype_digit($string))
+		{
+			$string = intval($string); //Transforme une chaine de caractère en un entier
+			// si elle est composée de nombres uniquement
+		}
+		// Pour tous les autres types
+		else
+		{
+			$string = $bdd->quote($string); //place des guillemets simples autour d'une chaîne d'entrée, si nécessaire et protège les caractères spéciaux présents dans la chaîne d'entrée
+			// ex : %, '', "", 
+			$string = addcslashes($string, '%_');
+		}
+		
+		return $string;
+	}
 
 function insert_user($name,$lastname,$job,$mail,$password,$birthdate,$role,$school){
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
@@ -34,11 +52,9 @@ function has_password($mail){
 		return true;
 	}
 }
-
-
-
 function insert_password($mail,$password){
 	$password = password_hash($password, PASSWORD_DEFAULT);
+
 	$bdd = new PDO('mysql:host=localhost;dbname=ldap_school;charset=utf8', 'root', 'root');
 	$req = $bdd->prepare('UPDATE `users` SET `password` = "'.$password.'" WHERE `mail` ="'.$mail.'" ');
 	$req->execute(array(

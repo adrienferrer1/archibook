@@ -9,6 +9,9 @@ session_start();
 $mail = $_POST['mail'];
 $pw = $_POST['password'];
 
+$mail = secure_string($mail);
+$pw = secure_string($pw);
+
 $user_data = get_user_data($mail);
 $_SESSION['name'] = $user_data[0];
 $_SESSION['lastname'] = $user_data[1];
